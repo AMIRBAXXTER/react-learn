@@ -1,8 +1,8 @@
-export default function SocialMedia(props) {
+export default function SocialMedia({name: userName, url = "#"}) {
   return (
     <div>
       <li>
-        <a href={props.url}>{props.name}</a>
+        <a href={url}>{userName}</a>
       </li>
     </div>
   );

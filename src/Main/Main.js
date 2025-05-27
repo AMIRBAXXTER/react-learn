@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-
-export default class Main extends Component {
-  render() {
-    return (
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-          maiores nostrum saepe nulla iusto dicta in iste voluptates culpa
-          expedita asperiores ea totam aliquid corrupti quasi ipsam sapiente,
-          fugit natus?m
-        </p>
-      </div>
-    );
-  }
+import User from "./User/User";
+export default function Main() {
+	const users = [
+		{name: "amir", age: 27, image: "user_images/1.webp"},
+		{name: "reza", age: 22, image: "user_images/2.webp"},
+		{name: "ahmad", age: 18, image: "user_images/3.jfif"},
+		{name: "mehdi", age: 30},
+	]
+	return (
+		<div>
+			{users.map((user) => (
+				<User {...user} />
+			))}
+		</div>
+	);
 }
