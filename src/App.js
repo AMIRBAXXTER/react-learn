@@ -5,7 +5,9 @@ export default function App() {
 	return (
 		<div>
 			<Header />
-			<Main />
+			<div className="w-full flex justify-center my-10 rounded-lg ">
+				<Main />
+			</div>
 			<Footer />
 		</div>
 	);
