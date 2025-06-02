@@ -12,8 +12,10 @@ export default function Footer() {
   ];
   return (
     <div>
+      <div className="w-3/4 min-w-10 flex justify-center">
       <Counter counterName="step counter" />
       <Counter counterName="timer" />
+      </div>
       <ul>
         {urls.map((url) => (
           <SocialMedia {...url} key={url.id} />

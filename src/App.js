@@ -5,7 +5,7 @@ export default function App() {
 	return (
 		<div>
 			<Header />
-			<div className="w-full flex justify-center my-10 rounded-lg ">
+			<div className="flex flex-col items-center justify-center min-h-screen my-10 rounded-lg ">
 				<Main />
 			</div>
 			<Footer />
