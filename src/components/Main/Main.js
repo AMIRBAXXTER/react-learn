@@ -3,24 +3,33 @@ import React, { useState, useEffect } from "react";
 import { BeatLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 export default function Main() {
 	const [randomUsers, setRandomUsers] = useState([]);
-	const addRandomUser = async () => {
-		await fetch("https://randomuser.me/api/")
+	const addRandomUser = () => {
+		fetch("https://randomuser.me/api/")
 			.then((res) => res.json())
 			.then((data) =>
-				setRandomUsers((pervState) => [...pervState, data.results[0]])
+				setRandomUsers((prevState) => [...prevState, data.results[0]])
 			)
 			.catch((err) => console.log(err));
 	};
-	const createRandomUserList = async (number) => {
-		await fetch(`https://randomuser.me/api/?results=${number}`)
-			.then((res) => res.json())
-			.then((data) => setRandomUsers(data.results))
-			.catch((err) => console.log(err));
+	const createRandomUserList = async(number) => {
+        try {
+            const res = await fetch(`https://randomuser.me/api/?results=${number}`)
+            const data = await res.json()
+            setRandomUsers(data.results)
+        } catch (error) {
+            console.log(error)
+        }
+        
+		// fetch(`https://randomuser.me/api/?results=${number}`)
+		// 	.then((res) => res.json())
+		// 	.then((data) => setRandomUsers(data.results))
+		// 	.catch((err) => console.log(err));
 	};
 	const deleteUser = (id) => {
-		setRandomUsers(randomUsers.filter((user) => user.login.uuid !== id));
+		setRandomUsers(users => users.filter(user => user.login.uuid !== id));
 	};
 	useEffect(() => {
 		createRandomUserList(8);
@@ -35,7 +44,7 @@ export default function Main() {
 					<AnimatePresence>
 						{randomUsers.map((user, i) => (
 							<motion.div
-								key={user.id.value}
+								key={user.login.uuid}
 								initial={{ opacity: 0, y: 40 }}
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: 40 }}
@@ -47,7 +56,7 @@ export default function Main() {
 									image={user.picture?.large}
 									id={user.login.uuid}
 									deleteUser={deleteUser}
-                                    users={randomUsers}
+									users={randomUsers}
 								/>
 							</motion.div>
 						))}

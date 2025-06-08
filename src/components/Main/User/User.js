@@ -14,7 +14,7 @@ export default function User({
 	};
     return (
         <div className="my-7">
-            <RiDeleteBin6Line size={20} color={"red"} onClick={() => DeleteHandler(id)} />
+            <RiDeleteBin6Line className="float-right hover:cursor-pointer"size={20} color={"red"} onClick={() => DeleteHandler(id)} />
             <li className="list-none m-auto w-full text-center">{Username}</li>
             <li className="list-none m-auto w-full text-center">{age}</li>
             <Link to={`/users/${id}`} state={props.users}>

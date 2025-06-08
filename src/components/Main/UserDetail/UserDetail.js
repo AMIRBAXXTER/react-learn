@@ -2,6 +2,7 @@ import { Navigate, useLocation, useParams } from "react-router-dom";
 
 export default function UserDetail(props) {
 	const location = useLocation();
+    console.log(location);
 	const users = location.state ?? [];
 	const params = useParams();
 	const mainUser = users.find((user) => user.login.uuid === params.id);
