@@ -2,6 +2,8 @@ import User from "./User/User";
 import React, { useState, useEffect } from "react";
 import { BeatLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
+import Counter from "./Counter/Counter";
+import CounterHook from "./Counter/CounterHook";
 
 
 export default function Main() {
@@ -69,6 +71,8 @@ export default function Main() {
 			>
 				add new User
 			</button>
+			<Counter counterName="Counter" />
+			<CounterHook counterTitle="Hook Counter" />
 		</div>
 	);
 }
