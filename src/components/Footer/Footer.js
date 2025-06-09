@@ -11,7 +11,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="flex justify-between items-center w-full bg-gradient-to-r from-slate-800 to-blue-700 h-28 shadow-lg px-6">
+    <footer className="flex justify-between items-center w-full bg-gradient-to-r from-slate-800 to-blue-700 h-28 shadow-lg px-6 mt-52">
       <div className="flex items-center justify-center h-full w-1/3 bg-slate-700 rounded-l-xl">
         <span className="text-cyan-300 text-lg font-semibold tracking-wide">this is footer</span>
       </div>
