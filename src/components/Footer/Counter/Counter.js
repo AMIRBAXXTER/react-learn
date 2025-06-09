@@ -39,7 +39,7 @@ export default class Counter extends Component {
 
 	render() {
 		return (
-			<div className="bg-slate-100 w-1/5">
+			<div className="bg-slate-100 w-36 h-36 m-auto shadow-2xl">
 				<h1>{this.props.counterName}</h1>
 				<h2>{this.state.count > 20 ? "more than 20" : "less than 20"}</h2>
 				<h2>Count: {this.state.count}</h2>
