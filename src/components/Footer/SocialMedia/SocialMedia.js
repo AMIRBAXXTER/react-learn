@@ -1,38 +1,56 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub, FaGoogle } from 'react-icons/fa';
+import React, { useRef } from 'react';
 
-// رنگ اصلی هر شبکه برای hover
-const hoverColors = {
-  facebook: 'hover:bg-[#1877f2]',    // فیسبوک: آبی کلاسیک
-  twitter: 'hover:bg-[#1da1f2]',     // توییتر: آبی لایت
-  instagram: 'hover:bg-gradient-to-tr hover:from-pink-500 hover:to-yellow-400', // اینستاگرام: گرادینت
-  linkedin: 'hover:bg-[#0077b5]',     // لینکدین: آبی تیره
-  github: 'hover:bg-[#21262d]',       // گیت‌هاب: خاکستری تیره
-  google: 'hover:bg-[#ea4335]',       // گوگل: قرمز گوگل
-};
+export default function SocialMedia({ name, url, Icon, colorClass }) {
+  const spotRef = useRef(null);
+  const btnRef = useRef(null);
 
-const icons = {
-  facebook: FaFacebook,
-  twitter: FaTwitter,
-  instagram: FaInstagram,
-  linkedin: FaLinkedin,
-  github: FaGithub,
-  google: FaGoogle,
-};
-
-export default function SocialMedia({ name, url }) {
-  const Icon = icons[name.toLowerCase()] || null;
-  const hoverClass = hoverColors[name.toLowerCase()] || 'hover:bg-cyan-600';
+  function handleMouseMove(e) {
+    const btn = btnRef.current;
+    const spot = spotRef.current;
+    if (!btn || !spot) return;
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    spot.style.left = `${x}px`;
+    spot.style.top = `${y}px`;
+    spot.style.opacity = 1;
+  }
+  function handleMouseLeave() {
+    if (spotRef.current) spotRef.current.style.opacity = 0;
+  }
 
   return (
-    <li>
+    <li className="flex justify-center">
       <a
         href={url || "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className={`flex flex-col items-center px-3 py-2 rounded-full bg-white/10 transition text-white font-medium shadow-sm text-xl ${hoverClass}`}
+        ref={btnRef}
+        className="
+          relative flex flex-col items-center justify-center
+          w-9 h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12
+          rounded-full bg-white/10 text-white shadow-md text-lg
+          transition focus:outline-none overflow-hidden
+        "
+        style={{ WebkitTapHighlightColor: "transparent" }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         title={name}
       >
-        {Icon && <Icon />}
+        <span
+          ref={spotRef}
+          className={`
+            pointer-events-none absolute
+            w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8
+            -translate-x-1/2 -translate-y-1/2
+            rounded-full opacity-0 transition duration-200 z-0
+            ${colorClass}
+          `}
+          style={{ left: "50%", top: "50%", opacity: 0 }}
+        />
+        <span className="z-10">
+          {Icon && <Icon />}
+        </span>
         <span className="sr-only">{name}</span>
       </a>
     </li>

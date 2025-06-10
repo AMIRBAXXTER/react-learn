@@ -1,25 +1,24 @@
 import SocialMedia from "./SocialMedia/SocialMedia";
+import socialLinks from "../Footer/SocialMedia/SocialData";
 
 export default function Footer() {
-  const urls = [
-    { id: 1, name: "facebook", url: "https://www.facebook.com/" },
-    { id: 2, name: "twitter", url: "https://twitter.com/" },
-    { id: 3, name: "instagram", url: "https://www.instagram.com/" },
-    { id: 4, name: "linkedin", url: "https://www.linkedin.com/" },
-    { id: 5, name: "github", url: "https://github.com/" },
-    { id: 6, name: "google", url: "https://www.google.com/" },
-  ];
-
   return (
-    <footer className="flex justify-between items-center w-full bg-gradient-to-r from-slate-800 to-blue-700 h-28 shadow-lg px-6 mt-52">
-      <div className="flex items-center justify-center h-full w-1/3 bg-slate-700 rounded-l-xl">
-        <span className="text-cyan-300 text-lg font-semibold tracking-wide">this is footer</span>
+    <footer className="w-full bg-gradient-to-r from-slate-800 to-blue-700 shadow-lg px-3 mt-52 py-4">
+      <div className="flex flex-col items-center justify-center w-full gap-3 md:flex-row md:justify-between">
+        <div className="flex items-center justify-center bg-slate-700 rounded-xl px-4 py-2 mb-3 md:mb-0">
+          <span className="text-cyan-300 text-base md:text-lg font-semibold tracking-wide">this is footer</span>
+        </div>
+        <ul className="
+          grid grid-cols-3 gap-3
+          md:grid-cols-4
+          lg:flex lg:flex-wrap lg:justify-center
+          w-full md:w-auto
+        ">
+          {socialLinks.map(link => (
+            <SocialMedia {...link} key={link.id} />
+          ))}
+        </ul>
       </div>
-      <ul className="flex w-1/2 justify-center gap-5 items-center">
-        {urls.map((url) => (
-          <SocialMedia {...url} key={url.id} />
-        ))}
-      </ul>
     </footer>
   );
 }
