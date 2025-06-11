@@ -8,6 +8,7 @@ export default function Header() {
       <div className="flex justify-between w-1/3">
         <HeaderLink to="/" end children="home" />
         <HeaderLink to="/users" children="users"/>
+        <HeaderLink to="/todos" children="todos"/>
         <HeaderLink to="/about" children="about"/>
         <HeaderLink to="/404" children="404"/>
       </div>
